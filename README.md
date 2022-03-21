@@ -20,6 +20,7 @@ npm run watch
 
 # build
 npm run build
+npm run compile
 ```
 
 **Note**: This template uses npm v7 feature — [**Installing Peer Dependencies Automatically**](https://github.com/npm/rfcs/blob/latest/implemented/0025-install-peer-deps.md). If you are using a different package manager, you may need to install some peerDependencies manually.

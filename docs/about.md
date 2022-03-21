@@ -18,6 +18,7 @@
       1. 功能分类列 + 事件维度列 + 详细信息列【事件里程碑/编辑详情页】
 
 使用tailwind 做css样式
+使用pinia做状态管理
 
 编辑页怎么布局？
 
@@ -35,15 +36,17 @@
 5. 图片上传
    1. 读取剪切板内的图片，自动上传到7牛等图床，生成在线链接
    2. electron可以实现
-6. 灵光一闪的想法
-   1. 做什么东西
+6. 灵光一闪的想法 结合卡片风格 结合词云图等形式
+   1. 想做什么东西
    2. 为什么想要做
+   3. 有什么优点
+7. 提前申明一些关键词，然后在编辑日记的时候，识别到关键词之后，给定提示，提示建立link关系
+8. 主题切换 暗色模式、亮色模式
 
 
-
-
-7. electron本地存储解决方案 `electron-store`
+9. electron本地存储解决方案 `electron-store`
    1. 主要是存储用户的进入行为，根据行为决定展示feature页还是直接进入编辑页
+   2. cocheDB
 
 
 
@@ -51,7 +54,6 @@
 ## 编辑器
 + 使用什么编辑器
 + 实时预览 写完直接编译
-+ 
 
 ## markdown解析
 + marked 402k 
@@ -69,7 +71,7 @@
 # Q&A
 ## 1. 预加载脚本与渲染器的数据共享规则    
 它们共享window变量，说是可以通过在window上挂载全局变量，实现渲染器能力增强    
-但是因为ContextIsolation的存在，在渲染器中并不能直接访问到这些附加的全局变量，避免特权api泄漏到网页内容上
+但是因为`ContextIsolation`的存在，在渲染器中并不能直接访问到这些附加的全局变量，避免特权api泄漏到网页内容上
 
 > 结构模型有点类似Chrome，渲染进程是运行在沙箱中的，不能访问到系统的能力
 > preload脚本是能够使用系统能力的，渲染器进程不行，
@@ -80,3 +82,17 @@
 专门用来实现渲染器进程和主进程之间的交互
 1. 暴露`ipcRenderer`到渲染器进程，然后实现进程间通信
 2. 对那些使用url打开的页面，可以通过此api在widnow上挂载自定义属性，识别桌面环境，来做桌面定制化功能
+
+```js
+// packages/preload/src/index.ts
+import type {BinaryLike} from 'crypto';
+import {createHash} from 'crypto';
+
+contextBridge.exposeInMainWorld('nodeCrypto', {
+  sha256sum(data: BinaryLike) {
+    const hash = createHash('sha256');
+    hash.update(data);
+    return hash.digest('hex');
+  },
+});
+```
