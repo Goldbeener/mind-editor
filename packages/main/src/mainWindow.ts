@@ -1,6 +1,6 @@
-import {BrowserWindow} from 'electron';
-import {join} from 'path';
-import {URL} from 'url';
+import { BrowserWindow } from 'electron';
+import { join } from 'path';
+import { URL } from 'url';
 
 async function createWindow() {
   const browserWindow = new BrowserWindow({
@@ -8,6 +8,10 @@ async function createWindow() {
     webPreferences: {
       nativeWindowOpen: true,
       webviewTag: false, // The webview tag is not recommended. Consider alternatives like iframe or Electron's BrowserView. https://www.electronjs.org/docs/latest/api/webview-tag#warning
+      /**
+       * preload 的逻辑抽象在/preload下，单独打包
+       * 产物是js文件 直接引
+       * */
       preload: join(__dirname, '../../preload/dist/index.cjs'),
     },
   });

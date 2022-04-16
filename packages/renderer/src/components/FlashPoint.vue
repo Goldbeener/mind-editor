@@ -86,42 +86,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-// get from local cache
-// const flashData = [
-//   {
-//     title: 'y-api',
-//     desc: 'a js mock platform extend from js api',
-//     keywords: ['mock', 'dev']
-//   },
-//   {
-//     title: "纸短情长小程序",
-//     keywords: ['一首诗', '一句歌词'],
-//     desc: 'a js mock platform extend from js api'
-//   },
-//   {
-//     title: 'js-api',
-//     desc: 'a js mock platform extend from js api',
-//     keywords: ['mock', 'dev']
-//   },
-//   {
-//     title: "纸短情长小程序",
-//     keywords: ['一首诗', '一句歌词'],
-//     desc: 'a js mock platform extend from js api'
-//   }, {
-//     title: 'js-api',
-//     desc: 'a js mock platform extend from js api',
-//     keywords: ['mock', 'dev']
-//   },
-//   {
-//     title: "纸短情长小程序",
-//     keywords: ['一首诗', '一句歌词'],
-//     desc: 'a js mock platform extend from js api'
-//   }, {
-//     title: 'js-api',
-//     desc: 'a js mock platform extend from js api',
-//     keywords: ['mock', 'dev']
-//   },
-// ]
+
 </script>
 <style>
 .item {
